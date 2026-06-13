@@ -17,24 +17,6 @@ except ImportError:
 if "NEBIUS_API_KEY" in st.secrets:
     os.environ["NEBIUS_API_KEY"] = st.secrets["NEBIUS_API_KEY"]
 
-# --- password gate ---
-def check_password():
-    def entered():
-        if st.session_state["password"] == st.secrets.get("APP_PASSWORD", ""):
-            st.session_state["auth_ok"] = True
-            del st.session_state["password"]
-        else:
-            st.session_state["auth_ok"] = False
-    if st.session_state.get("auth_ok", False):
-        return True
-    st.text_input("Enter password:", type="password", on_change=entered, key="password")
-    if "auth_ok" in st.session_state and not st.session_state["auth_ok"]:
-        st.error("Incorrect password.")
-    return False
-
-if not check_password():
-    st.stop()
-
 # --- set up the bot once and reuse it (cached so it doesn't reload every click) ---
 @st.cache_resource
 def load_bot():
