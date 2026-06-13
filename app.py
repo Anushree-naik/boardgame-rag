@@ -7,7 +7,11 @@ from dotenv import load_dotenv
 from langchain_nebius import NebiusEmbeddings, ChatNebius
 from langchain_chroma import Chroma
 
-load_dotenv()
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 # Make the Nebius key work locally (.env) and on the cloud (secrets)
 if "NEBIUS_API_KEY" in st.secrets:
