@@ -34,22 +34,23 @@ game you mean instead of guessing.
 ## Setup & run locally
 1. Clone the repo and enter it:
 git clone https://github.com/YOUR_USERNAME/boardgame-rag.git
-
 cd boardgame-rag
+
 2. Create a virtual environment and install dependencies:
 python3 -m venv venv
-
 source venv/bin/activate      # Windows: venv\Scripts\activate
-
 pip install -r requirements.txt
+
 3. Install Tesseract (for OCR of image-based rulebooks):
 brew install tesseract        # macOS
+
 4. Add your Nebius API key. Create `.streamlit/secrets.toml`:
 NEBIUS_API_KEY = "your-key-here"
-
 APP_PASSWORD = "your-chosen-password"
+
 5. Build the database (one time):
 python3 embed_store.py
+
 6. Run the app:
 streamlit run app.py
 
